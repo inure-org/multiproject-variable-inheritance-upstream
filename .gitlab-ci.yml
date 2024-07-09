@@ -1,0 +1,18 @@
+build_vars:
+  stage: build
+  script:
+    - echo "construindo..."
+    - echo "TEST_ENV_USERNAME_ENCRYPTED=eW91YXJldGhlYmVzdA==" >> credentials.env
+    - echo "TEST_ENV_PASSWORD_ENCRYPTED=dGhhbmt5b3Vmb3JoZWxwaW5n" >> credentials.env
+  artifacts:
+    reports:
+      dotenv: credentials.env
+
+unit-tests:
+  stage: test
+  script:
+    - echo "rodando testes unitários..."
+
+integration-tests:
+  stage: test
+  trigger: ci-research-2021-may/scenario-2-downstream
